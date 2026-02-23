@@ -125,5 +125,42 @@
       ui.appendChild(love);
     }
   </script>
+
+<style>
+    #ui {
+      position: absolute;
+      width: 85vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      transform-origin: center center;
+    }
+    
+  </style>
+  <script>
+    function makeItResponsive() {
+      const uiWrap = document.getElementById('ui');
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      
+      const baseSize = 1000; 
+      
+      const scaleWidth = screenWidth / baseSize;
+      const scaleHeight = screenHeight / baseSize;
+      
+      let finalScale = Math.min(scaleWidth, scaleHeight);
+
+      finalScale = finalScale * 0.9;
+
+      if (finalScale < 1) {
+        uiWrap.style.transform = `scale(${finalScale})`;
+      } else {
+        uiWrap.style.transform = 'scale(1)';
+      }
+    }
+
+    window.addEventListener('resize', makeItResponsive);
+    makeItResponsive();
+  </script>
 </body>
 </html>
